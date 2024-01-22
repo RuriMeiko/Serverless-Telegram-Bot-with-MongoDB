@@ -87,7 +87,7 @@ Callback handling is implemented in the `callback.ts` file, command processing i
 
 ## MongoDB Functions
 
-MongoDB functions are written based on the OpenAPI documented [here](https://www.mongodb.com/docs/atlas/app-services/data-api/openapi/).
+MongoDB functions are written based on the MongoDB Atlas documented [here](https://www.mongodb.com/docs/atlas/app-services/data-api/openapi/).
 
 Here is a demo of how to use MongoDB functions:
 
