@@ -23,8 +23,12 @@ To start with the project, follow these steps:
    ```
 
    Replace `YourMongoToken`, `YourTelegramApiKey`, and `YourMongoUrl` with your specific information.
+   
+   `YourMongoToken` and `YourMongoUrl` get [here](https://www.mongodb.com/docs/atlas/app-services/data-api/generated-endpoints/).
 
-3. **Run the Application in Development Environment**
+   `YourTelegramApiKey` get [here](https://t.me/BotFather).
+
+4. **Run the Application in Development Environment**
 
    Use the following command to run the application in the development environment:
 
@@ -34,7 +38,7 @@ To start with the project, follow these steps:
 
    Ensure that your application is running correctly in the development environment.
 
-4. **Implement Additional Features**
+5. **Implement Additional Features**
 
    Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements.
 
