@@ -4,6 +4,8 @@
   "author": "RuriMeiko",
   "scripts": {
     "build": "worktop build src/index.ts",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
     "types": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
