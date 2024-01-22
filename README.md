@@ -62,6 +62,11 @@ Here is a demo of how to use MongoDB functions:
 const text = await this.database.db("").collection("").find();
 ```
 
+## CPU Performance
+
+The CPU performance of [this project](https://github.com/RuriMeiko/telegram-water-reminder) that base on this project is approximately 1.1ms. View the performance chart ![CPU Performance Chart](https://i.ibb.co/d56y0g9/image.png)
+.
+
 Feel free to customize and extend the project according to your needs.
 
 ## Contribution and Support
