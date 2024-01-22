@@ -36,15 +36,38 @@ To start with the project, follow these steps:
    npm run dev
    ```
 
-   Ensure that your application is running correctly in the development environment.
+5. **Uploading Variables to Cloudflare Worker**
+   
+   To upload variables from the `.dev.vars` file to Cloudflare Worker using Wrangler, follow these steps:
+   
+   5.1. Open your terminal and navigate to the project directory.
+   
+   5.2. Use the following command to upload the variables from the `.dev.vars` file to Cloudflare Worker:
+   
+       ```bash
+       wrangler secret put
+       ```
+   
+       You will be prompted to interactively enter values for each variable. Enter the values corresponding to the variables in the `.dev.vars` file.
+   
+   5.3. To fill in information in the `wrangler.toml` file, open the file in a text editor and edit the following fields:
+   
+       ```toml
+       name = "yourworkername"
+       account_id = "yourcloudflareaccountid"
+       ```
+   
+       Replace `"yourworkername"` and `"yourcloudflareaccountid"` with the desired name for your Worker and your Cloudflare account ID.
+   
+6. **Implement Additional Features**
 
-5. **Implement Additional Features**
-
-   Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements and deploy it to Cloudflare worker     by use the following command:
+   Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements and deploy it to Cloudflare worker by use the following command:
    
    ```bash
    npm run deploy
    ```
+   
+Note that you need to have Wrangler installed and be logged into your Cloudflare account before performing these steps.
 
 ## Telegram Functions
 
