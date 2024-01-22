@@ -5,7 +5,6 @@ compatibility_date = "2024-1-1"
 main = "build/index.mjs"
 [build]
 command = "npm run build"
-[triggers]
 
 [vars]
 
