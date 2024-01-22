@@ -12,7 +12,6 @@ export default class BotModel {
 	database: MongoDB;
 	userBot: any;
 	constructor(config: any) {
-		this.bingImageCT = config.bingImageCT;
 		this.token = config.token;
 		this.commands = config.commands;
 		this.url = "https://api.telegram.org/bot" + this.token;
