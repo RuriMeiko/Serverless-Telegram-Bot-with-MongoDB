@@ -45,7 +45,9 @@ To start with the project, follow these steps:
    5.2. Use the following command to upload the variables from the `.dev.vars` file to Cloudflare Worker:
    
     ```bash
-    npx wrangler secret put KEY
+    npx wrangler secret put API_MONGO_TOKEN
+    npx wrangler secret put API_TELEGRAM
+    npx wrangler secret put URL_API_MONGO
     ```
    
    You will be prompted to interactively enter values for each variable. Enter the values corresponding to the variables in the `.dev.vars` file.
