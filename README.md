@@ -44,18 +44,18 @@ To start with the project, follow these steps:
    
    5.2. Use the following command to upload the variables from the `.dev.vars` file to Cloudflare Worker:
    
-       ```bash
-       wrangler secret put
-       ```
+    ```bash
+    wrangler secret put
+    ```
    
    You will be prompted to interactively enter values for each variable. Enter the values corresponding to the variables in the `.dev.vars` file.
    
    5.3. To fill in information in the `wrangler.toml` file, open the file in a text editor and edit the following fields:
    
-       ```toml
-       name = "yourworkername"
-       account_id = "yourcloudflareaccountid"
-       ```
+    ```toml
+    name = "yourworkername"
+    account_id = "yourcloudflareaccountid"
+    ```
    
    Replace `"yourworkername"` and `"yourcloudflareaccountid"` with the desired name for your Worker and your Cloudflare account ID.
    
