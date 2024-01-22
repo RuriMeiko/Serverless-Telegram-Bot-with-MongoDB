@@ -33,14 +33,18 @@ To start with the project, follow these steps:
    Use the following command to run the application in the development environment:
 
    ```bash
-   npx wrangler dev
+   npm run dev
    ```
 
    Ensure that your application is running correctly in the development environment.
 
 5. **Implement Additional Features**
 
-   Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements.
+   Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements and deploy it to Cloudflare worker     by use the following command:
+   
+   ```bash
+   npm run deploy
+   ```
 
 ## Telegram Functions
 
