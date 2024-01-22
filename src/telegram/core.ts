@@ -1,15 +1,13 @@
 import * as utils from "../utils";
 import { supportedLanguages, type InlineKeyboard, type supportedLanguagesType } from "./data";
 import type MongoDB from "../mongodb/init";
-import type bingImgCreater from "../bing/bing@imgcreater";
 import callback_hanle from "./callback";
-import text_hanle from "./texthanle";
+import text_processor from "./text_processor";
 export default class BotModel {
 	[x: string]: any;
 	private token: any;
 	private commands: any;
 	private url: string;
-	bingImageCT: bingImgCreater;
 	message: any;
 	database: MongoDB;
 	userBot: any;
@@ -25,71 +23,43 @@ export default class BotModel {
 		try {
 			this.message = request.content.message;
 			// console.log(this.message);
-			const currentcommand = await this.database
-				.db("randomfood")
-				.collection("command")
-				.findOne({
-					filter: { _id: this.message.chat.id },
-				});
 			if (this.message.hasOwnProperty("text")) {
 				// process text
 
 				// Test command and execute
 				if (!(await this.executeCommand(request))) {
 					// Test is not a command
-
-					await text_hanle.call(this, currentcommand);
-
-					// await this.sendMessage("This is not a command", this.message.chat.id);
-
-					// } else if (this.message.hasOwnProperty("photo")) {
-					// 	// process photo
-					// 	console.log(this.message.photo);
-					// } else if (this.message.hasOwnProperty("video")) {
-					// 	// process video
-					// 	console.log(this.message.video);
-					// } else if (this.message.hasOwnProperty("animation")) {
-					// 	// process animation
-					// 	console.log(this.message.animation);
-					// } else if (this.message.hasOwnProperty("locaiton")) {
-					// 	// process locaiton
-					// 	console.log(this.message.locaiton);
-					// } else if (this.message.hasOwnProperty("poll")) {
-					// 	// process poll
-					// 	console.log(this.message.poll);
-					// } else if (this.message.hasOwnProperty("contact")) {
-					// 	// process contact
-					// 	console.log(this.message.contact);
-					// } else if (this.message.hasOwnProperty("dice")) {
-					// 	// process dice
-					// 	console.log(this.message.dice);
-					// } else if (this.message.hasOwnProperty("sticker")) {
-					// 	// process sticker
-					// 	console.log(this.message.sticker);
-					// } else if (this.message.hasOwnProperty("reply_to_message")) {
-					// 	// process reply of a message
-					// 	console.log(this.message.reply_to_message);
+					await text_processor.call(this);
+				} else if (this.message.hasOwnProperty("photo")) {
+					// process photo
+					console.log(this.message.photo);
+				} else if (this.message.hasOwnProperty("video")) {
+					// process video
+					console.log(this.message.video);
+				} else if (this.message.hasOwnProperty("animation")) {
+					// process animation
+					console.log(this.message.animation);
+				} else if (this.message.hasOwnProperty("locaiton")) {
+					// process locaiton
+					console.log(this.message.locaiton);
+				} else if (this.message.hasOwnProperty("poll")) {
+					// process poll
+					console.log(this.message.poll);
+				} else if (this.message.hasOwnProperty("contact")) {
+					// process contact
+					console.log(this.message.contact);
+				} else if (this.message.hasOwnProperty("dice")) {
+					// process dice
+					console.log(this.message.dice);
+				} else if (this.message.hasOwnProperty("sticker")) {
+					// process sticker
+					console.log(this.message.sticker);
+				} else if (this.message.hasOwnProperty("reply_to_message")) {
+					// process reply of a message
+					console.log(this.message.reply_to_message);
 				}
 			} else {
-				if (currentcommand.document && currentcommand.document.command) {
-					switch (currentcommand.document.command) {
-						case "debtcreate":
-							await this.sendMessage(
-								"Đối phương phải được tag và gửi vào đây!",
-								this.message.chat.id
-							);
-							break;
-						case "debtcreatemoney":
-							await this.sendMessage(
-								"Vui lòng gửi đúng định dạng số tiền!",
-								this.message.chat.id
-							);
-							break;
-
-						default:
-							await this.sendMessage("Lỗi định dạng", this.message.chat.id);
-					}
-				}
+				console.log(this.message);
 			}
 		} catch (error: JSON | any) {
 			console.error(error);
@@ -138,12 +108,6 @@ export default class BotModel {
 		const isCommand = Object.keys(this.commands).includes(command);
 
 		if (isCommand) {
-			await this.database
-				.db("randomfood")
-				.collection("command")
-				.deleteOne({
-					filter: { _id: this.message.chat.id },
-				});
 			await this.commands[command](this, req, cmdArray.join(""));
 			return true;
 		}
@@ -307,7 +271,6 @@ export default class BotModel {
 			return null;
 		}
 	}
-	// Hàm edit tin nhắn tới telegram dựa vào request POST, dùng fetch để gửi
 	async editMessage(
 		text: string,
 		chatId: number,

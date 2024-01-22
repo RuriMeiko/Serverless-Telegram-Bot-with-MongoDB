@@ -1,6 +1,7 @@
 {
   "private": true,
-  "name": "randomfood",
+  "name": "yourbotname",
+  "author": "RuriMeiko",
   "scripts": {
     "build": "worktop build src/index.ts",
     "types": "tsc --noEmit --skipLibCheck"

@@ -1,4 +1,4 @@
-import randomfoodBot from "./self";
+import yourbotname from "./self";
 import * as utils from "../utils";
 
 export default class Handler {
@@ -6,7 +6,7 @@ export default class Handler {
 	private token: any;
 	private response: Response;
 	private request: any;
-	private bot: randomfoodBot | undefined;
+	private bot: yourbotname | undefined;
 	constructor(configs: any) {
 		this.configs = configs;
 		this.token = this.configs.token;
@@ -15,7 +15,7 @@ export default class Handler {
 
 	async handle(request: any) {
 		this.request = await this.processRequest(request);
-		this.bot = new randomfoodBot({
+		this.bot = new yourbotname({
 			userBot: this.configs.userBot,
 			bingImageCT: this.configs.bingImageCT,
 			database: this.configs.database,
