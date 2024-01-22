@@ -64,12 +64,11 @@ const text = await this.database.db("").collection("").find();
 
 ## CPU Performance
 
-The CPU performance of [this project](https://github.com/RuriMeiko/telegram-water-reminder) that base on this project is approximately 1.1ms. View the performance chart 
+The CPU performance of [this project](https://github.com/RuriMeiko/telegram-water-reminder) that base on this project is approximately 1.1ms. View the performance chart below:
 <p align="center">
   <img src="https://i.ibb.co/d56y0g9/image.png" alt="CPU Performance Chart">
 </p>
 
-.
 
 Feel free to customize and extend the project according to your needs.
 
