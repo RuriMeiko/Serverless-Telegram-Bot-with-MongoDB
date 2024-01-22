@@ -1,0 +1,11 @@
+name = "randomfood"
+account_id = "14d21caaf90af471a0e8f2d520a756ab"
+workers_dev = true # or zone_id = "<ZONE ID>" if you have one
+compatibility_date = "2023-12-31"
+main = "build/index.mjs"
+[build]
+command = "npm run build"
+[triggers]
+crons = ["* * * * *"]
+[vars]
+
