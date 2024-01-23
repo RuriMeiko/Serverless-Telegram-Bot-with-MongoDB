@@ -16,8 +16,9 @@ const worker: ExportedHandler<Bindings> = {
 		const database = new mongodb({
 			apiKey: env.API_MONGO_TOKEN,
 			apiUrl: env.URL_API_MONGO,
-			dataSource: "AtlasCluster",
+			dataSource: "YourDataSource",
 		});
+		
 		const url = new URL(req.url);
 		const path = url.pathname.replace(/[/]$/, "");
 		if (path !== "/your_api") {

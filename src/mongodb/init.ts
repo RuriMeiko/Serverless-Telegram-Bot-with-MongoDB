@@ -104,7 +104,7 @@ class MongoDB {
 	 * as an array of documents.
 	 * @param {Object} parameters - The request parameters.
 	 * @param {Object} parameters.pipeline - The MongoDB pipeline array.
-	 * @return {Promise<Array<Object>>} - Mảng các tài liệu được trả về.
+	 * @return {Promise<Array<any>>} - Mảng các tài liệu được trả về.
 	 */
 	aggregate = async ({ pipeline }: { pipeline: object }): Promise<Array<any>> => {
 		const { documents } = await this.request("aggregate", { pipeline });
@@ -137,7 +137,7 @@ class MongoDB {
 	 * @param {Object} [parameters.sort] - Đối tượng sắp xếp MongoDB, ví dụ: `{ completed: -1 }`.
 	 * @param {Number} [parameters.limit] - Số lượng tài liệu tối đa để trả về.
 	 * @param {Number} [parameters.skip] - Số lượng tài liệu để bỏ qua, còn được gọi là vị trí con trỏ.
-	 * @return {Promise<Array<Object>>} - Mảng các tài liệu phù hợp với các tham số.
+	 * @return {Promise<Array<any>>} - Mảng các tài liệu phù hợp với các tham số.
 	 */
 	find = async (
 		{
@@ -175,14 +175,14 @@ class MongoDB {
 	 * @param {Object} parameters - Các tham số yêu cầu.
 	 * @param {Object} [parameters.filter] - Đối tượng bộ lọc MongoDB.
 	 * @param {Object} [parameters.projection] - Đối tượng chiếu MongoDB.
-	 * @return {Promise<Object>} - Tài liệu đầu tiên phù hợp với các tham số.
+	 * @return {Promise<any>} - Tài liệu đầu tiên phù hợp với các tham số.
 	 */
 	findOne = async (
 		{ filter, projection }: { filter?: object; projection?: object } = {
 			filter: {},
 			projection: {},
 		}
-	): Promise<{ document: Object }> => {
+	): Promise<Object> => {
 		const { document } = await this.request("findOne", {
 			filter,
 			projection,
