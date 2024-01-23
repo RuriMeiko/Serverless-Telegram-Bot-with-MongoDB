@@ -11,12 +11,12 @@ class MongodbError extends Error {
 	}
 }
 
-export default class MongoDB {
+class MongoDB {
 	private apiUrl: string;
 	private apiKey: string;
 	private dataSource: any;
-	private currentDatabase: string | null = null;
-	private currentCollection: string | null = null;
+	currentDatabase: string | null = null;
+	currentCollection: string | null = null;
 	private interpose: any;
 
 	constructor({
@@ -35,16 +35,6 @@ export default class MongoDB {
 		this.apiKey = apiKey;
 		this.dataSource = dataSource;
 		this.interpose = (passThrough: any) => passThrough;
-	}
-
-	db(database: string): MongoDB {
-		this.currentDatabase = database;
-		return this;
-	}
-
-	collection(collection: string): MongoDB {
-		this.currentCollection = collection;
-		return this;
 	}
 
 	private makeAndAssertConnectionIsValid() {
@@ -114,11 +104,12 @@ export default class MongoDB {
 	 * as an array of documents.
 	 * @param {Object} parameters - The request parameters.
 	 * @param {Object} parameters.pipeline - The MongoDB pipeline array.
-	 * @return {Promise<{ documents: Array<Object> }>} - The returned list of documents.
+	 * @return {Promise<Array<Object>>} - Mảng các tài liệu được trả về.
 	 */
-	aggregate = async ({ pipeline }: { pipeline: object }): Promise<{ documents: Array<any> }> =>
-		this.request("aggregate", { pipeline });
-
+	aggregate = async ({ pipeline }: { pipeline: object }): Promise<Array<any>> => {
+		const { documents } = await this.request("aggregate", { pipeline });
+		return documents;
+	};
 	/**
 	 * Delete the first document matching the filter, and return the number of documents deleted.
 	 * @param {Object} parameters - The request parameters.
@@ -138,14 +129,15 @@ export default class MongoDB {
 		this.request("deleteMany", { filter });
 
 	/**
-	 * Find and return a list of documents.
-	 * @param {Object} parameters - The request parameters.
-	 * @param {Object} [parameters.filter] - The MongoDB filter object.
-	 * @param {Object} [parameters.projection] - The MongoDB projection object.
-	 * @param {Object} [parameters.sort] - The MongoDB sort object, e.g. `{ completed: -1 }`.
-	 * @param {Number} [parameters.limit] - The maximum number of documents to return.
-	 * @param {Number} [parameters.skip] - The number of documents to skip, aka the cursor position.
-	 * @return {Promise<{ documents: Array<Object> }>} - The documents matching the parameters.
+	 /**
+	 * Tìm và trả về một danh sách các tài liệu.
+	 * @param {Object} parameters - Các tham số yêu cầu.
+	 * @param {Object} [parameters.filter] - Đối tượng bộ lọc MongoDB.
+	 * @param {Object} [parameters.projection] - Đối tượng chiếu MongoDB.
+	 * @param {Object} [parameters.sort] - Đối tượng sắp xếp MongoDB, ví dụ: `{ completed: -1 }`.
+	 * @param {Number} [parameters.limit] - Số lượng tài liệu tối đa để trả về.
+	 * @param {Number} [parameters.skip] - Số lượng tài liệu để bỏ qua, còn được gọi là vị trí con trỏ.
+	 * @return {Promise<Array<Object>>} - Mảng các tài liệu phù hợp với các tham số.
 	 */
 	find = async (
 		{
@@ -167,32 +159,37 @@ export default class MongoDB {
 			limit: undefined,
 			skip: undefined,
 		}
-	): Promise<{ documents: Array<any> }> =>
-		this.request("find", {
+	): Promise<Array<any>> => {
+		const { documents } = await this.request("find", {
 			filter,
 			projection,
 			sort,
 			limit,
 			skip,
 		});
+		return documents;
+	};
 
 	/**
-	 * Find and return the first document matching the filter.
-	 * @param {Object} parameters - The request parameters.
-	 * @param {Object} [parameters.filter] - The MongoDB filter object.
-	 * @param {Object} [parameters.projection] - The MongoDB projection object.
-	 * @return {Promise<{ document: Object }>} - The document matching the parameters.
+	 * Tìm và trả về tài liệu đầu tiên phù hợp với bộ lọc.
+	 * @param {Object} parameters - Các tham số yêu cầu.
+	 * @param {Object} [parameters.filter] - Đối tượng bộ lọc MongoDB.
+	 * @param {Object} [parameters.projection] - Đối tượng chiếu MongoDB.
+	 * @return {Promise<Object>} - Tài liệu đầu tiên phù hợp với các tham số.
 	 */
 	findOne = async (
 		{ filter, projection }: { filter?: object; projection?: object } = {
 			filter: {},
 			projection: {},
 		}
-	): Promise<{ document: any }> =>
-		this.request("findOne", {
+	): Promise<{ document: Object }> => {
+		const { document } = await this.request("findOne", {
 			filter,
 			projection,
 		});
+		// Trả về tài liệu đầu tiên nếu có
+		return document;
+	};
 
 	/**
 	 * Insert a single document. Must be an JSON document.
@@ -280,4 +277,40 @@ export default class MongoDB {
 			update,
 			upsert,
 		});
+}
+
+export default class Mongodbdb {
+	private _mongodb: MongoDB;
+	constructor({
+		apiKey,
+		apiUrl,
+		dataSource,
+	}: {
+		apiKey: string;
+		apiUrl: string;
+		dataSource: any;
+	}) {
+		this._mongodb = new MongoDB({
+			apiKey,
+			apiUrl,
+			dataSource,
+		});
+	}
+
+	db(database: string): Mongodbcoletion {
+		this._mongodb.currentDatabase = database;
+		return new Mongodbcoletion(this._mongodb);
+	}
+}
+
+class Mongodbcoletion {
+	private _mongodb: MongoDB;
+	constructor(tb: MongoDB) {
+		this._mongodb = tb;
+	}
+
+	collection(collection: string): MongoDB {
+		this._mongodb.currentCollection = collection;
+		return this._mongodb;
+	}
 }
