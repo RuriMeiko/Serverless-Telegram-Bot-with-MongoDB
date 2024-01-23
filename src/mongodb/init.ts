@@ -182,7 +182,7 @@ class MongoDB {
 			filter: {},
 			projection: {},
 		}
-	): Promise<Object> => {
+	): Promise<any> => {
 		const { document } = await this.request("findOne", {
 			filter,
 			projection,
