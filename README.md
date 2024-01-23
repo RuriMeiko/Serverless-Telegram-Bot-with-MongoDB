@@ -28,7 +28,7 @@ To start with the project, follow these steps:
 
    `YourTelegramApiKey` get [here](https://t.me/BotFather).
 
-4. **Run the Application in Development Environment**
+3. **Run the Application in Development Environment**
 
    Use the following command to run the application in the development environment:
 
@@ -36,21 +36,23 @@ To start with the project, follow these steps:
    npm run dev
    ```
 
-5. **Uploading Variables to Cloudflare Worker**
+4. **Uploading Variables to Cloudflare Worker**
    
    To upload variables from the `.dev.vars` file to Cloudflare Worker using Wrangler, follow these steps:
    
-   5.1. Open your terminal and navigate to the project directory.
+   4.1. Open your terminal and navigate to the project directory.
    
-   5.2. Use the following command to upload the variables from the `.dev.vars` file to Cloudflare Worker:
+   4.2. Use the following command to upload the variables from the `.dev.vars` file to Cloudflare Worker:
    
     ```bash
-    npx wrangler secret put
+    npx wrangler secret put API_MONGO_TOKEN
+    npx wrangler secret put API_TELEGRAM
+    npx wrangler secret put URL_API_MONGO
     ```
    
    You will be prompted to interactively enter values for each variable. Enter the values corresponding to the variables in the `.dev.vars` file.
    
-   5.3. To fill in information in the `wrangler.toml` file, open the file in a text editor and edit the following fields:
+   4.3. To fill in information in the `wrangler.toml` file, open the file in a text editor and edit the following fields:
    
     ```toml
     name = "yourworkername"
@@ -59,7 +61,7 @@ To start with the project, follow these steps:
    
    Replace `"yourworkername"` and `"yourcloudflareaccountid"` with the desired name for your Worker and your Cloudflare account ID.
    
-6. **Implement Additional Features**
+5. **Implement Additional Features**
 
    Now that you have set up the project and successfully run it in the development environment, you can start implementing additional features based on the project requirements and deploy it to Cloudflare worker by use the following command:
    
@@ -85,7 +87,7 @@ Callback handling is implemented in the `callback.ts` file, command processing i
 
 ## MongoDB Functions
 
-MongoDB functions are written based on the OpenAPI documented [here](https://www.mongodb.com/docs/atlas/app-services/data-api/openapi/).
+MongoDB functions are written based on the MongoDB Atlas documented [here](https://www.mongodb.com/docs/atlas/app-services/data-api/openapi/).
 
 Here is a demo of how to use MongoDB functions:
 
