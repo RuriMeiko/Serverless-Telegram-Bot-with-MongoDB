@@ -9,7 +9,7 @@ To start with the project, follow these steps:
    Run the following command to install the necessary packages from the `package.json` file:
 
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
 2. **Set Environment Variables**
