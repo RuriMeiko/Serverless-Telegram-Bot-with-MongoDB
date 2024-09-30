@@ -1,4 +1,4 @@
-# Worker Cloudflare Telegram MongoDB
+# Serverless Telegram Bot with MongoDB
 
 ## Project Initialization Guide
 
